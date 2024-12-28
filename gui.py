@@ -76,9 +76,7 @@ def show_training_details(exercise_id, dates, weights, reps, sets):
     tk.Button(window, text="閉じる", command=window.destroy).pack(pady=10)
 
 def add_exercise():
-    """
-    種目を追加するウィンドウ
-    """
+
     def save_exercise():
         name = entry_name.get()
         description = entry_desc.get()
@@ -161,9 +159,7 @@ def show_exercise_list():
             
             # 種目削除ボタン
             def delete_exercise(exercise_id):
-                """
-                種目を削除する処理
-                """
+
                 try:
                     conn = sqlite3.connect("database.db")
                     cursor = conn.cursor()
@@ -275,10 +271,10 @@ def run_app():
     initialize_database()
 
     root = tk.Tk()
-    root.title("筋トレログ管理アプリ")
+    root.title("Muscle Workout")
     root.geometry("400x300")
 
-    tk.Label(root, text="筋トレログ管理アプリ", font=("Arial", 16, "bold")).pack(pady=20)
+    tk.Label(root, text="Muscle Workout", font=("Arial", 16, "bold")).pack(pady=20)
 
     tk.Button(root, text="種目追加", command=add_exercise, font=("Arial", 14)).pack(pady=10)
     tk.Button(root, text="種目一覧を表示", command=show_exercise_list).pack(pady=10)
