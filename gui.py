@@ -11,9 +11,6 @@ from matplotlib import font_manager
 import threading
 
 def show_progress(exercise_id):
-    """
-    種目IDに基づいて進捗をグラフで表示し、トレーニング詳細を表示する
-    """
     data = get_progress_data(exercise_id)
 
     if data:
@@ -47,9 +44,7 @@ def display_graph(dates, weights, reps, sets):
     plt.show()
 
 def show_training_details(exercise_id, dates, weights, reps, sets):
-    """
-    トレーニングの詳細（日付とセット数）を表示するウィンドウ
-    """
+
     window = tk.Toplevel()
     window.title("トレーニング詳細")
 
@@ -57,7 +52,7 @@ def show_training_details(exercise_id, dates, weights, reps, sets):
     unique_dates = sorted(set(dates))
 
     def show_details_for_date(date):
-        """選択した日付の詳細を表示"""
+        #選択した日付の詳細を表
         details_window = tk.Toplevel()
         details_window.title(f"{date} の詳細")
 
@@ -127,9 +122,7 @@ def add_exercise():
     tk.Button(window, text="保存", command=save_exercise).pack()
     
 def show_exercise_list():
-    """
-    登録済みの種目一覧を表示するウィンドウ
-    """
+
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
     cursor.execute("SELECT id, name, description FROM Exercise")
@@ -192,9 +185,6 @@ def show_exercise_list():
 
 
 def add_training_log_for_exercise(exercise_id):
-    """
-    指定された種目IDに対してトレーニングログを追加するウィンドウ
-    """
     def save_log():
         # セットごとにデータを保存
         date = entry_date.get()
@@ -228,9 +218,7 @@ def add_training_log_for_exercise(exercise_id):
             messagebox.showerror("エラー", "日付を入力してください！")
 
     def set_today_date():
-        """
-        現在の日付を入力欄に設定する
-        """
+
         today = datetime.today().strftime('%Y-%m-%d')
         entry_date.delete(0, tk.END)
         entry_date.insert(0, today)
@@ -248,9 +236,7 @@ def add_training_log_for_exercise(exercise_id):
     tk.Button(window, text="今日", command=set_today_date).pack(pady=5)
 
     def create_set_inputs():
-        """
-        ユーザーがセット数を入力した後にセットごとの重量と回数を入力するフィールドを横並びで作成
-        """
+ 
         try:
             sets = int(entry_sets.get())
             if sets <= 0:
@@ -285,9 +271,7 @@ def add_training_log_for_exercise(exercise_id):
     tk.Button(window, text="保存", command=save_log).pack(pady=5)
 
 def run_app():
-    """
-    メインアプリケーションを起動する
-    """
+
     initialize_database()
 
     root = tk.Tk()
